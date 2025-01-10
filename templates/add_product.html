@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section {
+            width: 580px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+
+        h3 {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea,
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #f5f5f5;
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        .photo-product img {
+            width: 100px;
+            height: 100px;
+            margin-right: 10px;
+            margin-top: 10px;
+            object-fit: cover;
+            border-radius: 1rem;
+            border: 1px solid;
+        }
+
+        button {
+            padding: 5px 10px;
+            border: 2px solid #007bff;
+            background-color: #f5f5f5;
+            color: #007bff;
+            /* border: none; */
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: medium;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            color: #f5f5f5;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        input[type="radio"] {
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .section {
+                margin: 0px 0px 20px 0px !important;
+            }
+
+            .photo-product img {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section {
+                margin: 0px 0px 20px 0px !important;
+            }
+
+            .photo-product img {
+                width: 60px;
+                height: 60px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <form class="form"
+                action="{{ url_for('productadddb') if not product else url_for('productupdatedb', sku=product[7]) }}"
+                method="post" enctype="multipart/form-data" style="display: flex; flex-wrap: wrap;">
+                <!-- General Information -->
+                <div class="col-md-6 col-lg-6 section" style="width: 565px !important;">
+                    <h3>General Information</h3>
+                    <label for="productname">Product Name</label>
+                    <input type="text" id="productname" name="productname" value="{{ product[0] if product else '' }}">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description"
+                        rows="4">{{ product[1] if product else '' }}</textarea>
+                </div>
+
+                <!-- Product Media -->
+                <div class="col-md-6 col-lg-6 section"
+                    style="border: 2px dashed rgba(116, 114, 114, 0.422); width: 565px;">
+                    <h3>Product Media</h3>
+                    <div class="photo-product d-flex flex-wrap">
+                        <div id="upload">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <input type="hidden" name="existing_input1"
+                                        value="{{ product[12] if product else '' }}">
+                                    <input type="hidden" name="existing_input2"
+                                        value="{{ product[13] if product else '' }}">
+                                    <input type="hidden" name="existing_input3"
+                                        value="{{ product[14] if product else '' }}">
+                                    <input type="hidden" name="existing_input4"
+                                        value="{{ product[15] if product else '' }}">
+                                    <input type="hidden" name="existing_input5"
+                                        value="{{ product[16] if product else '' }}">
+
+                                    <div class="imgupload mt-3">
+                                        <input onchange="Filevalidation1()" id="input1" name="input1" type="file"
+                                            class="file" data-browse-on-zone-click="true" data-preview="true"
+                                            placeholder="Image 1">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="imgupload mt-3">
+                                        <input onchange="Filevalidation2()" id="input2" name="input2" type="file"
+                                            class="file" data-browse-on-zone-click="true" data-preview="true"
+                                            placeholder="Image 1">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="imgupload mt-3">
+                                        <input onchange="Filevalidation3()" id="input3" name="input3" type="file"
+                                            class="file" data-browse-on-zone-click="true" data-preview="true"
+                                            placeholder="Image 1">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="imgupload mt-3">
+                                        <input onchange="Filevalidation4()" id="input4" name="input4" type="file"
+                                            class="file" data-browse-on-zone-click="true" data-preview="true"
+                                            placeholder="Image 1">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="imgupload mt-3">
+                                        <input onchange="Filevalidation5()" id="input5" name="input5" type="file"
+                                            class="file" data-browse-on-zone-click="true" data-preview="true"
+                                            placeholder="Image 1">
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Pricing -->
+                <div class="col-md-6 col-lg-6 section" style="width: 565px !important;">
+                    <div class="row">
+                        <h3>Pricing</h3>
+                        <div class="col-lg-6 col-md-6">
+                            <label for="base-price">Base Price</label>
+                            <input type="number" id="base-price" name="base-price"
+                                value="{{ product[3] if product else '' }}">
+                        </div>
+
+                        <div class="col-lg-6 col-md-6">
+                            <label for="discountpercentage1">Discount Percentage 1(%)</label>
+                            <input type="text" id="discountpercentage1" name="discountpercentage1"
+                                value="{{ product[4] if product else '' }}" 
+                                oninput="this.value = this.value.replace(/[^0-9-]/g, '');" placeholder="5-10">
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <label for="discountpercentage2">Discount Percentage 2(%)</label>
+                            <input type="text" id="discountpercentage2" name="discountpercentage2"
+                                value="{{ product[5] if product else '' }}" 
+                                oninput="this.value = this.value.replace(/[^0-9-]/g, '');" placeholder="10-15">
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <label for="discountpercentage3">Discount Percentage 3(%)</label>
+                            <input type="text" id="discountpercentage3" name="discountpercentage3"
+                                value="{{ product[6] if product else '' }}" 
+                                oninput="this.value = this.value.replace(/[^0-9-]/g, '');" placeholder="15-20">
+                        </div>
+
+                        <div class="col-lg-6 col-md-6">
+                            <label for="sku">SKU</label>
+                            <input type="number" id="sku" name="sku" value="{{ product[7] if product else '' }}">
+                        </div>
+
+                        <div class="col-lg-6 col-md-6">
+                            <label for="quantity">Stock quantity</label>
+                            <input type="text" id="quantity" name="quantity" placeholder="0,0,0,0,0,0" pattern="[0-9,]*"
+                                value="{{ product[8] if product else '' }}"  oninput="this.value = this.value.replace(/[^0-9,]/g, '');">
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Category -->
+                <div class="col-md-6 col-lg-6 section" style="width: 565px !important;">
+                    <h3>Category</h3>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label for="product-tags">Product Gender</label>
+                            <div class="tags">
+                                <input type="radio" name="gender" id="tag1" value="Men" {{ 'checked' if product and product[10] == 'Men' else '' }}>
+                                <label for="Men">Men</label>
+                                <input type="radio" name="gender" id="tag2" value="Women" {{ 'checked' if product and product[10] == 'Women' else '' }}>
+                                <label for="Women">Women</label>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6" id="div1">
+                            <label for="product-category-men">Product Category</label>
+                            <select id="product-category-men" name="product-category-men"
+                                value="{{ product[9] if product else '' }}">
+                                <option value="Shirts" {{ 'selected' if product and product[9] == 'Shirts' else '' }}>Shirts</option>
+                                <option value="Tshirts" {{ 'selected' if product and product[9] == 'Tshirts' else '' }}>Tshirts</option>
+                                <option value="Jeans&Trousers" {{ 'selected' if product and product[9] == 'Jeans&Trousers' else '' }}>Jeans&Trousers
+                                </option>
+                                <option value="Shorts&Chinos" {{ 'selected' if product and product[9] == 'Shorts&Chinos' else '' }}>Shorts&Chinos
+                                </option>
+                                <option value="Jackets&Hoodies" {{ 'selected' if product and product[9] == 'Jackets&Hoodies' else '' }}>Jackets&Hoodies</option>
+                                <option value="Sweaters&Sweatshirts" {{ 'selected' if product and product[9] == 'Sweaters&Sweatshirts' else '' }}>Sweaters&Sweatshirts</option>
+                                <option value="Sneakers&CasualShoes" {{ 'selected' if product and product[9] == 'Sneakers&CasualShoes' else '' }}>Sneakers&CasualShoes</option>
+                                <option value="FormalShoes" {{ 'selected' if product and product[9] == 'FormalShoes' else '' }}>FormalShoes</option>
+                                <option value="Sandals&Slippers" {{ 'selected' if product and product[9] == 'Sandals&Slippers' else '' }}>Sandals&Slippers</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-6" id="div2" style="display: none;">
+                            <label for="product-category-women">Product Category</label>
+                            <select id="product-category-women" name="product-category-women"
+                                value="{{ product[9] if product else '' }}">
+                                <option value="Tops" {{ 'selected' if product and product[9] == 'Tops' else '' }}>Tops</option>
+                                <option value="Dresses" {{ 'selected' if product and product[9] == 'Dresses' else '' }}>Dresses</option>
+                                <option value="Jeans&Pants" {{ 'selected' if product and product[9] == 'Jeans&Pants' else '' }}>Jeans&Pants</option>
+                                <option value="Skirts&Shorts" {{ 'selected' if product and product[9] == 'Skirts&Shorts' else '' }}>Skirts&Shorts</option>
+                                <option value="Sweaters" {{ 'selected' if product and product[9] == 'Sweaters' else '' }}>Sweaters</option>
+                                <option value="Jackets&Coats" {{ 'selected' if product and product[9] == 'Jackets&Coats' else '' }}>Jackets&Coats</option>
+                                <option value="Flats&Sandals" {{ 'selected' if product and product[9] == 'Flats&Sandals' else '' }}>Flats&Sandals</option>
+                                <option value="Heels&Wedges" {{ 'selected' if product and product[9] == 'Heels&Wedges' else '' }}>Heels&Wedges</option>
+                                <option value="Sneakers&CasualShoes" {{ 'selected' if product and product[9] == 'Sneakers&CasualShoes' else '' }}>Sneakers&CasualShoes   </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="tags" id="size-l-xl">
+                        <label for="product-tags" >Product Size</label>
+                        <input type="checkbox" name="size" value="XS" id="tag1" {{ 'checked' if 'XS' in product[11] else '' }}>
+                        <label for="XS">XS</label>
+                        <input type="checkbox" name="size" value="S" id="tag2" {{ 'checked' if 'S' in product[11] else '' }}>
+                        <label for="S">S</label>
+                        <input type="checkbox" name="size" value="M" id="tag3" {{ 'checked' if 'M' in product[11] else '' }}>
+                        <label for="M">M</label>
+                        <input type="checkbox" name="size" value="L" id="tag1" {{ 'checked' if 'L' in product[11] else '' }}>
+                        <label for="L">L</label>
+                        <input type="checkbox" name="size" value="XL" id="tag2" {{ 'checked' if 'XL' in product[11] else '' }}>
+                        <label for="XL">XL</label>
+                        <input type="checkbox" name="size" value="XXL" id="tag3" {{ 'checked' if 'XXL' in product[11] else '' }}>
+                        <label for="XXL">XXL</label>
+                    </div>
+                    <div class="tags" id="size-6-11" style="visibility: hidden; position: absolute;">
+                        <label for="product-tags">Product Size</label>
+                        <input type="checkbox" name="size" value="6" id="tag1" {{ 'checked' if '6' in product[11] else '' }}>
+                        <label for="6">6</label>
+                        <input type="checkbox" name="size" value="7" id="tag2" {{ 'checked' if '7' in product[11] else '' }}>
+                        <label for="7">7</label>
+                        <input type="checkbox" name="size" value="8" id="tag3" {{ 'checked' if '8' in product[11] else '' }}>
+                        <label for="8">8</label>
+                        <input type="checkbox" name="size" value="9" id="tag1" {{ 'checked' if '9' in product[11] else '' }}>
+                        <label for="9">9</label>
+                        <input type="checkbox" name="size" value="10" id="tag2" {{ 'checked' if '10' in product[11] else '' }}>
+                        <label for="10">10</label>
+                        <input type="checkbox" name="size" value="11" id="tag3" {{ 'checked' if '11' in product[11] else '' }}>
+                        <label for="11">11</label>
+                    </div>
+                    <label for="product-tags" style="margin-top: 10px;">Color</label>
+                    <div class="tags">
+                        <input type="text" name="color" id="tag1" value="{{product[2]}}">
+                    </div>
+                    <label for="product-tags" style="margin-top: 10px;">Color Options:-</label>
+                    <div class="tags">
+                        <input type="text" name="coloroptions"  id="tag1" value="{{product[18]}}">
+                    </div>
+                    <label for="product-tags" style="margin-top: 10px;">Vendors</label>
+                    <div class="tags">
+                        <input type="text" name="vendor" id="tag1" value="{{product[17]}}">
+                    </div>
+
+
+                </div>
+
+                <button style="width: 50%; margin-top: 20px;" class="mx-auto" type="submit">{{ 'Add Product' if not
+                    product else 'Update Product' }}</button>
+
+                <!-- Inventory -->
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        Filevalidation1 = () => {
+            const fi = document.getElementById('input1');
+            // Check if any file is selected.
+            if (fi.files.length > 0) {
+                for (const i = 0; i <= fi.files.length - 1; i++) {
+
+                    const fsize = fi.files.item(i).size;
+                    const file = Math.round((fsize / 1024));
+                    // The size of the file.
+                    if (file >= 1024) {
+                        alert(
+                            "File too Big, please select a file less than 1mb");
+                        $('#input1').val('');
+                    }
+
+                }
+            }
+        }
+        Filevalidation2 = () => {
+            const fi = document.getElementById('input2');
+            // Check if any file is selected.
+            if (fi.files.length > 0) {
+                for (const i = 0; i <= fi.files.length - 1; i++) {
+
+                    const fsize = fi.files.item(i).size;
+                    const file = Math.round((fsize / 1024));
+                    // The size of the file.
+                    if (file >= 1024) {
+                        alert(
+                            "File too Big, please select a file less than 1mb");
+                        $('#input2').val('');
+                    }
+
+                }
+            }
+        }
+        Filevalidation3 = () => {
+            const fi = document.getElementById('input3');
+            // Check if any file is selected.
+            if (fi.files.length > 0) {
+                for (const i = 0; i <= fi.files.length - 1; i++) {
+
+                    const fsize = fi.files.item(i).size;
+                    const file = Math.round((fsize / 1024));
+                    // The size of the file.
+                    if (file >= 1024) {
+                        alert(
+                            "File too Big, please select a file less than 1mb");
+                        $('#input3').val('');
+                    }
+
+                }
+            }
+        }
+        Filevalidation4 = () => {
+            const fi = document.getElementById('input4');
+            // Check if any file is selected.
+            if (fi.files.length > 0) {
+                for (const i = 0; i <= fi.files.length - 1; i++) {
+
+                    const fsize = fi.files.item(i).size;
+                    const file = Math.round((fsize / 1024));
+                    // The size of the file.
+                    if (file >= 1024) {
+                        alert(
+                            "File too Big, please select a file less than 1mb");
+                        $('#input4').val('');
+                    }
+
+                }
+            }
+        }
+        Filevalidation5 = () => {
+            const fi = document.getElementById('input5');
+            // Check if any file is selected.
+            if (fi.files.length > 0) {
+                for (const i = 0; i <= fi.files.length - 1; i++) {
+
+                    const fsize = fi.files.item(i).size;
+                    const file = Math.round((fsize / 1024));
+                    // The size of the file.
+                    if (file >= 1024) {
+                        alert(
+                            "File too Big, please select a file less than 1mb");
+                        $('#input5').val('');
+                    }
+
+                }
+            }
+        }
+
+        function toggleDivs() {
+            const selectedGender = document.querySelector('input[name="gender"]:checked').value;
+            const div1 = document.getElementById('div1');
+            const div2 = document.getElementById('div2');
+            const categoryMen = document.getElementById('product-category-men');
+            const categoryWomen = document.getElementById('product-category-women');
+
+            if (selectedGender === "Women") {
+                div1.style.display = 'none';
+                div2.style.display = 'block';
+                categoryMen.disabled = true;
+                categoryWomen.disabled = false;
+            } else {
+                div1.style.display = 'block';
+                div2.style.display = 'none';
+                categoryMen.disabled = false;
+                categoryWomen.disabled = true;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+        const menCategory = document.getElementById('product-category-men');
+        const womenCategory = document.getElementById('product-category-women');
+        const sizeDivLXL = document.getElementById('size-l-xl');
+        const sizeDiv6to11 = document.getElementById('size-6-11');
+
+        function toggleSizeDiv() {
+            // Determine which category is active
+            const menSelectedValue = menCategory.value;
+            const womenSelectedValue = womenCategory.value;
+
+            // Define product categories that use numeric sizes for men and women
+            const menCategoriesForShoes = ['Sneakers&CasualShoes', 'FormalShoes', 'Sandals&Slippers'];
+            const womenCategoriesForShoes = ['Sneakers&CasualShoes', 'Flats&Sandals', 'Heels&Wedges'];
+
+            // Check if numeric size options should be shown for men
+            const isMenShoesCategory = menCategoriesForShoes.includes(menSelectedValue);
+            // Check if numeric size options should be shown for women
+            const isWomenShoesCategory = womenCategoriesForShoes.includes(womenSelectedValue);
+
+            if (isMenShoesCategory || isWomenShoesCategory) {
+                sizeDiv6to11.style.visibility = 'visible';
+                sizeDiv6to11.style.position = 'relative';
+                sizeDivLXL.style.visibility = 'hidden';
+                sizeDivLXL.style.position = 'absolute';
+            } else {
+                sizeDiv6to11.style.visibility = 'hidden';
+                sizeDiv6to11.style.position = 'absolute';
+                sizeDivLXL.style.visibility = 'visible';
+                sizeDivLXL.style.position = 'relative';
+            }
+        }
+
+        // Initial check
+        toggleSizeDiv();
+
+        // Add event listeners for change
+        menCategory.addEventListener('change', toggleSizeDiv);
+        womenCategory.addEventListener('change', toggleSizeDiv);
+    });
+
+        // Attach the function to each radio button's change event
+        document.querySelectorAll('input[name="gender"]').forEach(radio => {
+            radio.addEventListener('change', toggleDivs);
+        });
+
+        // Initialize the visibility on page load
+        document.addEventListener('DOMContentLoaded', toggleDivs);
+
+
+
+        var alert_message = '{{ message }}'
+        if (alert_message != '') {
+            alert(alert_message);
+        } 
+    </script>
+</body>
+
+</html>

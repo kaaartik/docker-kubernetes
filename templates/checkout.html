@@ -1,0 +1,1006 @@
+checkou
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<!-- belle/checkout.html   11 Nov 2019 12:44:33 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Checkout</title>
+<meta name="description" content="description">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Favicon -->
+<!-- <link rel="shortcut icon" href="../static/images/favicon.png" /> -->
+<!-- Plugins CSS -->
+<link rel="stylesheet" href="../static/css/plugins.css">
+<!-- Bootstap CSS -->
+<link rel="stylesheet" href="../static/css/bootstrap.min.css">
+<!-- Main Style CSS -->
+<link rel="stylesheet" href="../static/css/style.css">
+<link rel="stylesheet" href="../static/css/responsive.css">
+</head>
+<body class="page-template belle">
+<div class="pageWrapper">
+	<!--Search Form Drawer-->
+	<!-- <div class="search">
+        <div class="search__form">
+            <form class="search-bar__form" action="#">
+                <button class="go-btn search__button" type="submit"><i class="icon anm anm-search-l"></i></button>
+                <input class="search__input" type="search" name="q" value="" placeholder="Search entire store..." aria-label="Search" autocomplete="off">
+            </form>
+            <button type="button" class="search-trigger close-btn"><i class="icon anm anm-times-l"></i></button>
+        </div>
+    </div> -->
+    <!--End Search Form Drawer-->
+
+ <!--Top Header-->
+ <div class="top-header" style="background-color: #081525;">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <!-- Centered Tagline Section -->
+            <div class="col-sm-12 col-md-4 offset-md-4 text-center top-headerdiv">
+                <p class="top-header_middle-text" style="color: #deb992;">Effortless Style. Redefined for You.
+                </p>
+            </div>
+            <!-- Right Aligned Login and Create Account -->
+            <div class="col-sm-12 col-md-4 text-right accountlogo">
+                <span class="user-menu d-block d-lg-none">
+                    <i class="anm anm-user-al" aria-hidden="true" style="color: #deb992;"></i>
+                </span>
+                <ul class="customer-links list-inline mb-0">
+                    {% if session['logged_in'] %}
+                    <!-- User is logged in -->
+                    {% if session['is_admin'] %}
+                    <li class="list-inline-item"><a href="/wishlist" target="_blank"
+                            style="color: #deb992; font-weight: 500;">Admin</a></li>
+                    {% endif %}
+                    <li class="list-inline-item" style="display: none;"><a href="/login"
+                            style="color: #deb992; font-weight: 500;">Login</a></li>
+                    <li class="list-inline-item" style="display: none;"><a href="/register"
+                            style="color: #deb992; font-weight: 500;">Create Account</a></li>
+
+                    <!-- Show "My Account" and "Logout" when logged in -->
+                    <li class="list-inline-item"><a href="/myaccount"
+                            style="color: #deb992; font-weight: 500;">My
+                            Account</a></li>
+                    <li class="list-inline-item"><a href="/logout"
+                            style="color: #deb992; font-weight: 500;">Logout</a></li>
+                    {% else %}
+                    <!-- User is not logged in -->
+                    <li class="list-inline-item" style="display: none;"><a href="/wishlist" target="_blank"
+                            style="color: #deb992; font-weight: 500;">Admin</a></li>
+                    <li class="list-inline-item"><a href="/login"
+                            style="color: #deb992; font-weight: 500;">Login</a></li>
+                    <li class="list-inline-item"><a href="/register"
+                            style="color: #deb992; font-weight: 500;">Create Account</a></li>
+                    <li class="list-inline-item" style="display: none;"><a href="/myaccount"
+                            style="color: #deb992; font-weight: 500; display: none;">My Account</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Top Header-->
+        <!--Header-->
+        <div class="header-wrap classicHeader animated d-flex">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <!--Desktop Logo-->
+                    <div class="logo col-md-2 col-lg-2 d-none d-lg-block">
+                        <a href="/">
+                            <img src="../static/images/logo/newlogo.png" width="80px" alt="FashionHolics" 
+                                    title="FashionHolics" />
+                                
+                        </a>
+                    </div>
+                    <!--End Desktop Logo-->
+                    <div class="col-2 col-sm-3 col-md-3 col-lg-8" style="display: flex; justify-content: center; align-items: center; height: 100%;">
+                        <div class="d-block d-lg-none" >
+                            <button type="button"
+                                class="btn--link site-header__menu js-mobile-nav-toggle mobile-nav--open">
+                                <i class="icon anm anm-times-l" style="color: #deb992;"></i>
+                                <i class="anm anm-bars-r" style="color: #deb992;"></i>
+                            </button>
+                        </div>
+                        <!--Desktop Menu-->
+                        <nav class="grid__item" id="AccessibleNav"><!-- for mobile -->
+                            <ul id="siteNav" class="site-nav medium center hidearrow">
+                                {% if session['logged_in'] %}
+                                <li class="lvl1 parent megamenu"><a href="/">Home <i
+                                            class="anm anm-angle-down-l"></i></a>
+                                </li>
+                                <li class="lvl1 parent megamenu"><a href="/shopfullwidth">Men<i
+                                    class="anm anm-angle-down-l"></i></a>
+                            <div class="megamenu style4">
+                                <ul class="grid grid--uniform mmWrapper">
+                                    <li class="grid__item lvl-1 col-md-3 col-lg-3"><a href="#"
+                                            class="site-nav lvl-1">Top Wear</a>
+                                        <ul class="subLinks">
+                                            <li class="lvl-2"><a href="/shopfullwidth/Tshirts"
+                                                    class="site-nav lvl-2">T-Shirts</a></li>
+                                            <li class="lvl-2"><a href="/shopfullwidth/Shirts"
+                                                    class="site-nav lvl-2">Shirts</a></li>
+                                            <li class="lvl-2"><a href="/shopfullwidth/Jackets&Hoodies"
+                                                    class="site-nav lvl-2">Jackets & Hoodies</a></li>
+                                            <li class="lvl-2"><a href="/shopfullwidth/Sweaters&Sweatshirts"
+                                                    class="site-nav lvl-2">Sweaters & Sweatshirts</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="grid__item lvl-1 col-md-3 col-lg-3"><a href="#"
+                                            class="site-nav lvl-1">Bottom Wear</a>
+                                        <ul class="subLinks">
+                                            <li class="lvl-2"><a href="/shopfullwidth/Jeans&Trousers"
+                                                    class="site-nav lvl-2">Jeans & Trousers<span
+                                                        class="lbl nm_label3">Hot</span></a></li>
+                                            <li class="lvl-2"><a href="/shopfullwidth/Shorts&Chinos"
+                                                    class="site-nav lvl-2">Shorts & Chinos</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="grid__item lvl-1 col-md-3 col-lg-3"><a href="#"
+                                            class="site-nav lvl-1">Foot Wear</a>
+                                        <ul class="subLinks">
+                                            <li class="lvl-2"><a href="/shopfullwidth/Sneakers&CasualShoes"
+                                                    class="site-nav lvl-2">Sneakers & Casual Shoes<span
+                                                        class="lbl nm_label3">Hot</span></a></li>
+                                            <li class="lvl-2"><a href="/shopfullwidth/FormalShoes"
+                                                    class="site-nav lvl-2">Formal Shoes</a></li>
+                                            <li class="lvl-2"><a href="/shopfullwidth/Sandals&Slippers"
+                                                    class="site-nav lvl-2">Sandals & Slippers</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="lvl1 parent megamenu"><a href="/shopwomen">Women<i
+                            class="anm anm-angle-down-l"></i></a>
+                    <div class="megamenu style4">
+                        <ul class="grid grid--uniform mmWrapper">
+                            <li class="grid__item lvl-1 col-md-3 col-lg-3"><a href="#"
+                                    class="site-nav lvl-1">Top Wear</a>
+                                <ul class="subLinks">
+                                    <li class="lvl-2"><a href="/shopwomen/Tops" class="site-nav lvl-2">Tops</a></li>
+                                    <li class="lvl-2"><a href="/shopwomen/Dresses" class="site-nav lvl-2">Dresses</a></li>
+                                    <li class="lvl-2"><a href="/shopwomen/Sweaters"
+                                            class="site-nav lvl-2">Sweaters</a></li>
+                                    <li class="lvl-2"><a href="/shopwomen/Jackets&Coats"
+                                            class="site-nav lvl-2">Jackets & Coats</a></li>
+                                </ul>
+                            </li>
+                            <li class="grid__item lvl-1 col-md-3 col-lg-3"><a href="#"
+                                    class="site-nav lvl-1">Bottom Wear</a>
+                                <ul class="subLinks">
+                                    <li class="lvl-2"><a href="/shopwomen/Jeans&Pants" class="site-nav lvl-2">Jeans & Pants
+                                            <!-- <span class="lbl nm_label3">Hot</span></a></li> -->
+                                    <li class="lvl-2"><a href="/shopwomen/Skirts&Shorts" class="site-nav lvl-2">Skirts & Shorts</a></li>
+                                </ul>
+                            </li>
+                            <li class="grid__item lvl-1 col-md-3 col-lg-3"><a href="#"
+                                    class="site-nav lvl-1">Footwear</a>
+                                <ul class="subLinks">
+                                    <li class="lvl-2"><a href="/shopwomen/Flats&Sandals"
+                                            class="site-nav lvl-2">Flats & Sandals<span
+                                                class="lbl nm_label3">Hot</span></a></li>
+                                    <li class="lvl-2"><a href="/shopwomen/Heels&Wedges"
+                                            class="site-nav lvl-2">Heels & Wedges</a></li>
+                                    <li class="lvl-2"><a href="/shopwomen/Sneakers&CasualShoes" class="site-nav lvl-2">Sneakers & Casual Shoes</a></li>
+
+                                </ul>
+                            </li>
+                            <!-- <li class="grid__item lvl-1 col-md-3 col-lg-3"><a href="#"
+                                    class="site-nav lvl-1">Sportswear</a>
+                                <ul class="subLinks">
+                                    <li class="lvl-2"><a href="/shopwomen" class="site-nav lvl-2">Sports
+                                            Bra</a></li>
+                                    <li class="lvl-2"><a href="/shopwomen"
+                                            class="site-nav lvl-2">Leggings</a></li>
+                                    <li class="lvl-2"><a href="/shopwomen" class="site-nav lvl-2">Tank
+                                            Tops</a></li>
+                                    <li class="lvl-2"><a href="/shopwomen"
+                                            class="site-nav lvl-2">Running Shorts</a></li>
+                                    <li class="lvl-2"><a href="/shopwomen" class="site-nav lvl-2">Track
+                                            Jackets</a></li>
+                                </ul>
+                            </li> -->
+                        </ul>
+                    </div>
+                </li>
+                                <li class="lvl1 parent megamenu"><a href="/">Kids <span
+                                            style="background-color: red;border-radius: 5px; padding: 1px;">Coming
+                                            soon!</span><i class="anm anm-angle-down-l"></i></a>
+
+                                </li>
+                                <!-- <li class="lvl1 parent dropdown"><a href="#">New Arrivals <i
+                                            class="anm anm-angle-down-l"></i></a>
+                                </li> -->
+
+                                <li class="lvl1 parent dropdown"><a href="/contactus">Contact Us <i
+                                            class="anm anm-angle-down-l"></i></a>
+                                </li>
+                                <li class="lvl1 parent dropdown"><a href="/aboutus">About Us <i
+                                    class="anm anm-angle-down-l"></i></a>
+                                </li>
+                                <li class="lvl1 parent dropdown"><a href="/myaccount">My Account <i
+                                            class="anm anm-angle-down-l"></i></a>
+                                </li>
+                                {% else %}
+                                <li class="lvl1 parent megamenu"><a href="/">Home <i
+                                            class="anm anm-angle-down-l"></i></a>
+                                </li>
+                                <li class="lvl1 parent megamenu"><a href="/shopfullwidth">Men<i
+                                    class="anm anm-angle-down-l"></i></a>
+                            <div class="megamenu style4">
+                                <ul class="grid grid--uniform mmWrapper">
+                                    <li class="grid__item lvl-1 col-md-3 col-lg-3"><a href="#"
+                                            class="site-nav lvl-1">Top Wear</a>
+                                        <ul class="subLinks">
+                                            <li class="lvl-2"><a href="/shopfullwidth/Tshirts"
+                                                    class="site-nav lvl-2">T-Shirts</a></li>
+                                            <li class="lvl-2"><a href="/shopfullwidth/Shirts"
+                                                    class="site-nav lvl-2">Shirts</a></li>
+                                            <li class="lvl-2"><a href="/shopfullwidth/Jackets&Hoodies"
+                                                    class="site-nav lvl-2">Jackets & Hoodies</a></li>
+                                            <li class="lvl-2"><a href="/shopfullwidth/Sweaters&Sweatshirts"
+                                                    class="site-nav lvl-2">Sweaters & Sweatshirts</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="grid__item lvl-1 col-md-3 col-lg-3"><a href="#"
+                                            class="site-nav lvl-1">Bottom Wear</a>
+                                        <ul class="subLinks">
+                                            <li class="lvl-2"><a href="/shopfullwidth/Jeans&Trousers"
+                                                    class="site-nav lvl-2">Jeans & Trousers<span
+                                                        class="lbl nm_label3">Hot</span></a></li>
+                                            <li class="lvl-2"><a href="/shopfullwidth/Shorts&Chinos"
+                                                    class="site-nav lvl-2">Shorts & Chinos</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="grid__item lvl-1 col-md-3 col-lg-3"><a href="#"
+                                            class="site-nav lvl-1">Foot Wear</a>
+                                        <ul class="subLinks">
+                                            <li class="lvl-2"><a href="/shopfullwidth/Sneakers&CasualShoes"
+                                                    class="site-nav lvl-2">Sneakers & Casual Shoes<span
+                                                        class="lbl nm_label3">Hot</span></a></li>
+                                            <li class="lvl-2"><a href="/shopfullwidth/FormalShoes"
+                                                    class="site-nav lvl-2">Formal Shoes</a></li>
+                                            <li class="lvl-2"><a href="/shopfullwidth/Sandals&Slippers"
+                                                    class="site-nav lvl-2">Sandals & Slippers</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="lvl1 parent megamenu"><a href="/shopwomen">Women<i
+                            class="anm anm-angle-down-l"></i></a>
+                    <div class="megamenu style4">
+                        <ul class="grid grid--uniform mmWrapper">
+                            <li class="grid__item lvl-1 col-md-3 col-lg-3"><a href="#"
+                                    class="site-nav lvl-1">Top Wear</a>
+                                <ul class="subLinks">
+                                    <li class="lvl-2"><a href="/shopwomen/Tops" class="site-nav lvl-2">Tops</a></li>
+                                    <li class="lvl-2"><a href="/shopwomen/Dresses" class="site-nav lvl-2">Dresses</a></li>
+                                    <li class="lvl-2"><a href="/shopwomen/Sweaters"
+                                            class="site-nav lvl-2">Sweaters</a></li>
+                                    <li class="lvl-2"><a href="/shopwomen/Jackets&Coats"
+                                            class="site-nav lvl-2">Jackets & Coats</a></li>
+                                </ul>
+                            </li>
+                            <li class="grid__item lvl-1 col-md-3 col-lg-3"><a href="#"
+                                    class="site-nav lvl-1">Bottom Wear</a>
+                                <ul class="subLinks">
+                                    <li class="lvl-2"><a href="/shopwomen/Jeans&Pants" class="site-nav lvl-2">Jeans & Pants
+                                            <!-- <span class="lbl nm_label3">Hot</span></a></li> -->
+                                    <li class="lvl-2"><a href="/shopwomen/Skirts&Shorts" class="site-nav lvl-2">Skirts & Shorts</a></li>
+                                </ul>
+                            </li>
+                            <li class="grid__item lvl-1 col-md-3 col-lg-3"><a href="#"
+                                    class="site-nav lvl-1">Footwear</a>
+                                <ul class="subLinks">
+                                    <li class="lvl-2"><a href="/shopwomen/Flats&Sandals"
+                                            class="site-nav lvl-2">Flats & Sandals<span
+                                                class="lbl nm_label3">Hot</span></a></li>
+                                    <li class="lvl-2"><a href="/shopwomen/Heels&Wedges"
+                                            class="site-nav lvl-2">Heels & Wedges</a></li>
+                                    <li class="lvl-2"><a href="/shopwomen/Sneakers&CasualShoes" class="site-nav lvl-2">Sneakers & Casual Shoes</a></li>
+
+                                </ul>
+                            </li>
+                            <!-- <li class="grid__item lvl-1 col-md-3 col-lg-3"><a href="#"
+                                    class="site-nav lvl-1">Sportswear</a>
+                                <ul class="subLinks">
+                                    <li class="lvl-2"><a href="/shopwomen" class="site-nav lvl-2">Sports
+                                            Bra</a></li>
+                                    <li class="lvl-2"><a href="/shopwomen"
+                                            class="site-nav lvl-2">Leggings</a></li>
+                                    <li class="lvl-2"><a href="/shopwomen" class="site-nav lvl-2">Tank
+                                            Tops</a></li>
+                                    <li class="lvl-2"><a href="/shopwomen"
+                                            class="site-nav lvl-2">Running Shorts</a></li>
+                                    <li class="lvl-2"><a href="/shopwomen" class="site-nav lvl-2">Track
+                                            Jackets</a></li>
+                                </ul>
+                            </li> -->
+                        </ul>
+                    </div>
+                </li>
+                                <li class="lvl1 parent megamenu"><a href="/">Kids <span
+                                    style="background-color: red;border-radius: 5px; padding: 1px;">Coming
+                                    soon!</span><i class="anm anm-angle-down-l"></i></a>
+
+                        </li>
+                                <li class="lvl1 parent dropdown"><a href="#">New Arrivals <i
+                                            class="anm anm-angle-down-l"></i></a>
+                                </li>
+
+                                <li class="lvl1 parent dropdown"><a href="/contactus">Contact Us <i
+                                            class="anm anm-angle-down-l"></i></a>
+                                </li>
+                                <li class="lvl1 parent dropdown"><a href="/aboutus">About Us <i
+                                    class="anm anm-angle-down-l"></i></a>
+                                </li>
+                                <li class="lvl1 parent dropdown"><a href="/myaccount" style="display: none;">My Account
+                                        <i class="anm anm-angle-down-l"></i></a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                        <!--End Desktop Menu-->
+                    </div>
+                    <!--Mobile Logo-->
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-2 d-block d-lg-none mobile-logo">
+                        <div class="logo moblog">
+                            <a href="/">
+                                <img src="../static/images/logo/newlogo.png" width="80px" alt="FashionHolics" 
+                                        title="FashionHolics" />
+                                    
+                            </a>
+                        </div>
+                    </div>
+                    <!--Mobile Logo-->
+                    <div class="col-4 col-sm-3 col-md-3 col-lg-2">
+                        <div class="site-cart">
+                            <a href="/cart" title="Cart">
+                                <i class="anm anm-bag-l" style="color: #deb992; font-size: 22px !important;"></i>
+                                <span id="CartCount" class="site-header__cart-count" data-cart-render="item_count" style="color: #deb992; font-size: medium;">{{ cart_count }}</span>
+                            </a>
+
+                        </div>
+                        <!-- <div class="site-header__search">
+                            <button type="button" class="search-trigger"><i class="icon anm anm-search-l"></i></button>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Header-->
+        <!--Mobile Menu-->
+        <div class="mobile-nav-wrapper" role="navigation">
+            <div class="closemobileMenu"><i class="icon anm anm-times-l pull-right"></i> Close Menu</div>
+            <ul id="MobileNav" class="mobile-nav">
+                {% if session['logged_in'] %}
+                <li class="lvl1 parent megamenu"><a href="/">Home</a>
+
+                </li>
+
+
+                <li><a href="/shopfullwidth" class="site-nav">Men<i class="anm anm-plus-l"></i></a>
+                    <ul>
+                        <li><a href="/shopfullwidth/Shirts" class="site-nav">Shirts</a></li>
+                        <li><a href="/shopfullwidth/Tshirts" class="site-nav">Tshirts</a></li>
+                        <li><a href="/shopfullwidth/Jeans&Trousers" class="site-nav">Jeans & Trousers</a></li>
+                        <li><a href="/shopfullwidth/Jackets&Hoodies" class="site-nav">Jackets & Hoodies</a></li>
+                        <li><a href="/shopfullwidth/Sweaters&Sweatshirts" class="site-nav">Sweaters & Sweatshirts</a></li>
+                        <li><a href="/shopfullwidth/Shorts&Chinos" class="site-nav">Shorts & Chinos</a></li>
+                        <li><a href="/shopfullwidth/Sneakers&CasualShoes" class="site-nav">Sneakers & Casual Shoes</a></li>
+                        <li><a href="/shopfullwidth/FormalShoes" class="site-nav">Formal Shoes</a></li>
+                        <li><a href="/shopfullwidth/Sandals&Slippers" class="site-nav">Sandals & Slippers</a></li>
+                    </ul>
+                </li>
+
+
+
+                <li><a href="/shopwomen" class="site-nav">Women<i class="anm anm-plus-l"></i></a>
+                    
+                    <ul>
+                                  <li><a href="/shopwomen/Tops" class="site-nav">Tops</a></li>
+                                  <li><a href="/shopwomen/Dresses" class="site-nav">Dresses</a></li>
+                                  <li><a href="/shopwomen/Jeans&Pants" class="site-nav">Jeans & Pants</a></li>
+                                  <li><a href="/shopwomen/Skirts&Shorts" class="site-nav">Skirts & Shorts</a></li>
+                                  <li><a href="/shopwomen/Sweaters" class="site-nav">Sweaters</a></li>
+                                  <li><a href="/shopwomen/Jackets&Coats" class="site-nav">Jackets & Coats</a></li>
+                                  <li><a href="/shopwomen/Flats&Sandals" class="site-nav">Flats & Sandals</a></li>
+                                  <li><a href="/shopwomen/Heels&Wedges" class="site-nav">Heels & Wedges</a></li>
+                                  <li><a href="/shopwomen/Sneakers&CasualShoes" class="site-nav">Sneakers & Casual Shoes</a></li>
+                              </ul>
+                          </li>
+                          <li class="lvl1 parent megamenu"><a href="/">Kids <span style="background-color: red;border-radius: 5px; padding: 1px;">Coming soon!</span><i
+                            class="anm anm-angle-down-l"></i></a>
+                   
+                </li>
+               
+
+                <li class="lvl1 parent dropdown"><a href="/contactus">Contact Us</a>
+                </li>
+
+                <li class="lvl1 parent dropdown"><a href="/myaccount">My Account</a>
+                </li>
+
+                {% else %}
+
+                <li class="lvl1 parent megamenu"><a href="/">Home</a>
+
+                </li>
+
+
+                <li><a href="/shopfullwidth" class="site-nav">Men<i class="anm anm-plus-l"></i></a>
+                    <ul>
+                        <li><a href="/shopfullwidth/Shirts" class="site-nav">Shirts</a></li>
+                        <li><a href="/shopfullwidth/Tshirts" class="site-nav">Tshirts</a></li>
+                        <li><a href="/shopfullwidth/Jeans&Trousers" class="site-nav">Jeans & Trousers</a></li>
+                        <li><a href="/shopfullwidth/Jackets&Hoodies" class="site-nav">Jackets & Hoodies</a></li>
+                        <li><a href="/shopfullwidth/Sweaters&Sweatshirts" class="site-nav">Sweaters & Sweatshirts</a></li>
+                        <li><a href="/shopfullwidth/Shorts&Chinos" class="site-nav">Shorts & Chinos</a></li>
+                        <li><a href="/shopfullwidth/Sneakers&CasualShoes" class="site-nav">Sneakers & Casual Shoes</a></li>
+                        <li><a href="/shopfullwidth/FormalShoes" class="site-nav">Formal Shoes</a></li>
+                        <li><a href="/shopfullwidth/Sandals&Slippers" class="site-nav">Sandals & Slippers</a></li>
+                    </ul>
+                </li>
+        
+
+
+
+                <li><a href="/shopwomen" class="site-nav">Women<i class="anm anm-plus-l"></i></a>
+                    
+                    <ul>
+                        <li><a href="/shopwomen/Tops" class="site-nav">Tops</a></li>
+                        <li><a href="/shopwomen/Dresses" class="site-nav">Dresses</a></li>
+                        <li><a href="/shopwomen/Jeans&Pants" class="site-nav">Jeans & Pants</a></li>
+                        <li><a href="/shopwomen/Skirts&Shorts" class="site-nav">Skirts & Shorts</a></li>
+                        <li><a href="/shopwomen/Sweaters" class="site-nav">Sweaters</a></li>
+                        <li><a href="/shopwomen/Jackets&Coats" class="site-nav">Jackets & Coats</a></li>
+                        <li><a href="/shopwomen/Flats&Sandals" class="site-nav">Flats & Sandals</a></li>
+                        <li><a href="/shopwomen/Heels&Wedges" class="site-nav">Heels & Wedges</a></li>
+                        <li><a href="/shopwomen/Sneakers&CasualShoes" class="site-nav">Sneakers & Casual Shoes</a></li>
+                    </ul>
+                          </li>
+                <li class="lvl1 parent megamenu"><a href="/">Kids <span style="background-color: red;border-radius: 5px; padding: 1px;">Coming soon!</span><i
+                    class="anm anm-angle-down-l"></i></a>
+           
+        </li>
+      
+
+                <li class="lvl1 parent dropdown"><a href="/contactus">Contact Us</a>
+                </li>
+
+                <li class="list-inline-item"><a href="/myaccount" style="color: #deb992; font-weight: 500; display: none;">My Account</a>
+                </li>
+                {% endif %}
+
+            </ul>
+
+                <!-- <li class="lvl1 parent dropdown"><a href="Myaccount.html">My Account</a>
+                </li> -->
+
+        </div>
+        <!--End Mobile Menu-->  
+    <!--Body Content-->
+    <div id="page-content" style="margin-top: 85px;">
+    	<!--Page Title-->
+    	<div class="page section-header text-center" style="margin-top: 5%;">
+			<div class="page-title">
+        		<div class="wrapper"><h1 class="page-width" style="margin-top: 4%; background-color: #deb992; color: #081525; font-weight: 500; font-size: x-large;">Checkout</h1></div>
+      		</div>
+		</div>
+        <!--End Page Title-->
+        
+        <div class="container">
+        	<div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-3">
+                    <div class="customer-box returning-customer">
+                        <h3><i class="icon anm anm-user-al"></i> Returning customer? <a href="#customer-login" id="customer" class="text-decoration-underline" data-toggle="collapse">Click here to login</a></h3>
+                        <div id="customer-login" class="collapse customer-content" >
+                            <div class="customer-info" style="background-color: #081525;border: 1px #1ba098 solid;">
+                                <p class="coupon-text">If you have shopped with us before, please enter your details in the boxes below to fetch your current address. If you are a new customer, please proceed to add your address.</p>
+                                <form method="POST" action="/userdetails">
+                                    <div class="row">
+                                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                            <label for="exampleInputEmail1">Email address <span class="required-f">*</span></label>
+                                            <input type="email" class="no-margin" id="exampleInputEmail1" style="background-color: #081525;">
+                                        </div>
+                                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                            <label for="exampleInputPassword1">Password <span class="required-f">*</span></label>
+                                            <input type="password" name="password" id="exampleInputPassword1" style="background-color: #081525;">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <!-- <div class="form-check width-100 margin-20px-bottom">
+                                                <label class="form-check-label">
+                                                    <input type="checkbox" class="form-check-input" value=""> Remember me!
+                                                </label>
+                                                <a href="#" class="float-right">Forgot your password?</a>
+                                            </div> -->
+                                            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-3">
+                    <div class="customer-box customer-coupon">
+                        <h3 class="font-15 xs-font-13"><i class="icon anm anm-gift-l"></i> Have a coupon? <a href="#have-coupon" class="text-decoration-underline" data-toggle="collapse">Click here to enter your code</a></h3>
+                        <div id="have-coupon" class="collapse coupon-checkout-content">
+                            <div class="discount-coupon">
+                                <div id="coupon" class="coupon-dec tab-pane active">
+                                    <p class="margin-10px-bottom">Enter your coupon code if you have one.</p>
+                                    <label class="required get" for="coupon-code"><span class="required-f">*</span> Coupon</label>
+                                    <input id="coupon-code" required="" type="text" class="mb-3">
+                                    <button class="coupon-btn btn" type="submit">Apply Coupon</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+
+            <div class="row billing-fields">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 sm-margin-30px-bottom">
+                    <div class="create-ac-content bg-light-gray padding-20px-all">
+                        <form method="POST" action="/confirm-address" id="addressForm">
+                            <div class="row">
+                                <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                    <label for="email">Email address <span class="required-f">*</span></label>
+                                    <input type="email" class="no-margin" name="email" id="email" value="{{ userdetails[0] if userdetails else '' }}" required>
+                                </div>
+                                <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                    <label for="firstname">First Name <span class="required-f">*</span></label>
+                                    <input type="text" id="firstname" name="firstname" value="{{ userdetails[1] if userdetails else '' }}" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                    <label for="lastname">Last Name <span class="required-f">*</span></label>
+                                    <input type="text" id="lastname" name="lastname" value="{{ userdetails[2] if userdetails else '' }}" required>
+                                </div>
+                                <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                    <label for="mobile">Mobile <span class="required-f">*</span></label>
+                                    <input type="text" id="mobile" name="mobile" value="{{ userdetails[3] if userdetails else '' }}" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                    <label for="address">Address <span class="required-f">*</span></label>
+                                    <input type="text" id="address" name="address" value="{{ userdetails[4] if userdetails else '' }}" required>
+                                </div>
+                                <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                    <label for="pincode">Pincode <span class="required-f">*</span></label>
+                                    <input type="text" id="pincode" name="pincode" pattern="\d{6}"  value="{{ userdetails[6] if userdetails else '' }}" required oninput="fetchLocationDetails()">
+                                </div>
+                               
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                    <label for="city">City <span class="required-f">*</span></label>
+                                    <input type="text" id="city" name="city" value="{{ userdetails[5] if userdetails else '' }}" readonly required>
+                                </div>
+                                <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                    <label for="state">State <span class="required-f">*</span></label>
+                                    <input type="text" id="state" name="state" value="{{ userdetails[7] if userdetails else '' }}" readonly required>
+
+                                </div>
+                                <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                    <label for="country">Country <span class="required-f">*</span></label>
+                                    <input type="text" id="country" name="country" value="India" readonly>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 order-button-payment" style="margin-top: 0px; text-align: center;">
+                                    <button type="submit" class="btn btn-primary mt-3">Confirm Address</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                    <div class="your-order-payment">
+                        <div class="your-order">
+                            <h2 class="order-title mb-4" style="color: #deb992;">Your Order</h2>
+
+                            <div class="table-responsive-sm order-table"> 
+                                <table class="table table-bordered table-hover text-center" style="border: 1px solid #1ba098 !important;" id="cartTable">
+                                    <thead style="border: 1px solid #1ba098 !important;">
+                                        <tr>
+                                            <th class="text-left">Product Name</th>
+                                            <th>Price</th>
+                                            <th>Size</th>
+                                            <th>Color</th>
+                                            <th>Qty</th>
+                                            <th>Subtotal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody style="border: 1px solid #1ba098 !important;">
+                                        {% for item in cart_items %}
+                                        <tr>
+                                            <td class="text-left">{{item[1]}}</td>
+                                            <td>₹{{item[3]}}</td>
+                                            <td>{{item[2]}}</td>
+                                            <td>{{item[6]}}</td>
+                                            <td>{{item[4]}}</td>
+                                            <td>₹{{item[5]}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                    <tfoot class="font-weight-600">
+                                        <tr>
+                                            <td colspan="5" class="text-right">Shipping </td>
+                                            <td>₹{{shipping_charges}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="5" class="text-right">Total</td>
+                                            <td>₹{{grand_total}}</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <hr />
+
+                        <div class="your-payment">
+                            <h2 class="payment-title mb-3">payment method</h2>
+                            <div class="payment-method">
+                                <div class="payment-accordion">
+                                    <div id="accordion" class="payment-section">
+                                        <div class="card mb-2" style="border: 1px #1ba098 solid;">
+                                            <div class="card-header" style="background-color: #081525;color:#deb992 ;">
+                                                <label>
+                                                    <input type="radio" name="payment_method" value="COD" required > Cash On Delivery
+                                                </label>
+                                            </div>
+                                            <!-- <div id="collapseOne" class="collapse" data-parent="#accordion">
+                                                <div class="card-body">
+                                                    <p class="no-margin font-15">Make your payment directly into our bank account...</p>
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                        <div class="card mb-2" style="border: 1px #1ba098 solid;">
+                                            <div class="card-header" style="background-color: #081525;color:#deb992 ;">
+                                                <label>
+                                                    <input type="radio" name="payment_method" value="Online" required > Online Payment
+                                                </label>
+                                            </div>
+                                            <!-- <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                                                <div class="card-body">
+                                                    <p class="no-margin font-15">Please send your cheque to Store Name, Store Street...</p>
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                        
+                                        <!-- <div class="card margin-15px-bottom border-radius-none">
+                                            <div class="card-header">
+                                                <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree"> PayPal </a>
+                                            </div>
+                                            <div id="collapseThree" class="collapse" data-parent="#accordion">
+                                                <div class="card-body">
+                                                    <p class="no-margin font-15">Pay via PayPal; you can pay with your credit card if you don't have a PayPal account.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card mb-2">
+                                            <div class="card-header">
+                                                <a class="collapsed card-link" data-toggle="collapse" href="#collapseFour"> Payment Information </a>
+                                            </div>
+                                            <div id="collapseFour" class="collapse" data-parent="#accordion">
+                                                <div class="card-body">
+                                                    <fieldset>
+                                                        <div class="row">
+                                                            <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                                                <label for="input-cardname">Name on Card <span class="required-f">*</span></label>
+                                                                <input name="cardname" value="" placeholder="Card Name" id="input-cardname" class="form-control" type="text">
+                                                            </div>
+                                                            <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                                                <label for="input-country">Credit Card Type <span class="required-f">*</span></label>
+                                                                <select name="country_id" class="form-control">
+                                                                    <option value=""> --- Please Select --- </option>
+                                                                    <option value="1">American Express</option>
+                                                                    <option value="2">Visa Card</option>
+                                                                    <option value="3">Master Card</option>
+                                                                    <option value="4">Discover Card</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                                                <label for="input-cardno">Credit Card Number  <span class="required-f">*</span></label>
+                                                                <input name="cardno" value="" placeholder="Credit Card Number" id="input-cardno" class="form-control" type="text">
+                                                            </div>
+                                                            <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                                                <label for="input-cvv">CVV Code <span class="required-f">*</span></label>
+                                                                <input name="cvv" value="" placeholder="Card Verification Number" id="input-cvv" class="form-control" type="text">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                                                <label>Expiration Date <span class="required-f">*</span></label>
+                                                                <input type="date" name="exdate" class="form-control">
+                                                            </div>
+                                                            <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                                                <img class="padding-25px-top xs-padding-5px-top" src="../static/images/payment-img.jpg" alt="card" title="card" />
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                </div>
+
+                                <div class="order-button-payment">
+                                    <button class="btn" value="Place order" type="submit" id="placeOrderBtn">Place order</button>
+                                </div>
+                                <div id="loader" style="display: none;"><h2 style="color: #deb992;">Processing your order...</h2></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <!--End Body Content-->
+    
+   <!--Footer-->
+   <footer id="footer">
+
+
+    <div class="site-footer">
+
+        <div class="container">
+            <hr>
+            <!--Footer Links-->
+            <div class="footer-top">
+
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-3 col-lg-3 footer-links">
+                        <h4 class="h4">Quick Shop</h4>
+                        <ul>
+                            <li><a href="/shopwomen">Women</a></li>
+                            <li><a href="/shopfullwidth">Men</a></li>
+                            <li><a href="#">Kids</a></li>
+                            <!-- <li><a href="#">Footwear</a></li> -->
+                        </ul>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-3 col-lg-3 footer-links">
+                        <h4 class="h4">Informations</h4>
+                        <ul>
+                            <li><a href="/aboutus">About us</a></li>
+                            <!-- <li><a href="#">Careers</a></li>
+                            <li><a href="#">Privacy policy</a></li>
+                            <li><a href="#">Terms &amp; condition</a></li> -->
+                            <li><a href="/myaccount">My Account</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-3 col-lg-3 footer-links">
+                        <h4 class="h4">Customer Services</h4>
+                        <ul>
+
+                            <li><a href="/contactus">Contact Us</a></li>
+                            <li><a href="/returnspolicy" target="_blank">Orders and Returns Policy</a></li>
+                            <li><a href="/shippinganddelivery" target="_blank">Shipping and Delivery</a></li>
+                            <li><a href="/privacypolicy" target="_blank">Privacy Policy</a></li>
+                            <li><a href="/termsandconditions" target="_blank">Terms and Conditions</a></li>
+
+                        </ul>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-3 col-lg-3 contact-box">
+                        <h4 class="h4">Contact Us</h4>
+                        <ul class="addressFooter">
+                            <li><i class="icon anm anm-map-marker-al" style="color: #deb992 !important;"></i>
+                                <p>Ram nagar, Road no 28, Near sadhna juniour college <br> Wagle estate, Thane 400604</p>
+                            </li>
+                            <li class="phone"><i class="icon anm anm-phone-s"
+                                    style="color: #deb992 !important; "></i>
+                                <p>+91 90762 61066</p>
+                            </li>
+                            <li class="email"><i class="icon anm anm-envelope-l"
+                                    style="color: #deb992 !important; "></i>
+                                <p>fashionholics23@gmail.com</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--End Footer Links-->
+            <hr>
+            <div class="footer-bottom">
+
+                <p class="text-center" style="font-size: medium; font-weight: 500; color: #1ba098;">Designed By
+                    Websharks</p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+<!--End Footer-->
+    <!--Scoll Top-->
+    <span id="site-scroll"><i class="icon anm anm-angle-up-r"></i></span>
+    <!--End Scoll Top-->
+    
+     <!-- Including Jquery -->
+     <script src="../static/js/vendor/jquery-3.3.1.min.js"></script>
+     <script src="../static/js/vendor/jquery.cookie.js"></script>
+     <script src="../static/js/vendor/modernizr-3.6.0.min.js"></script>
+     <script src="../static/js/vendor/wow.min.js"></script>
+     <!-- Including Javascript -->
+     <script src="../static/js/bootstrap.min.js"></script>
+     <script src="../static/js/plugins.js"></script>
+     <script src="../static/js/popper.min.js"></script>
+     <script src="../static/js/lazysizes.js"></script>
+     <script src="../static/js/main.js"></script>
+</div>
+
+<!-- JS alert handling -->
+{% if message %}
+<script>
+    alert("{{ message }}");
+</script>
+{% endif %}
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+
+    // Function to fetch city data (city, pincodes, state)
+// Function to fetch city data (city, pincodes, state) from Geonames API
+// Function to fetch city data (city, pincodes) from Geonames API
+async function fetchLocationDetails() {
+    const pincode = document.getElementById("pincode").value;
+
+    // Validate Pincode length
+    if (pincode.length === 6) {
+        try {
+            // Fetch data from the Postal PIN Code API
+            const response = await fetch(`https://api.postalpincode.in/pincode/${pincode}`);
+            const data = await response.json();
+
+            if (data[0].Status === "Success" && data[0].PostOffice) {
+                const postOffice = data[0].PostOffice[0]; // Take the first matching Post Office
+
+                // Populate the city and state fields
+                document.getElementById("city").value = postOffice.District || "";
+                document.getElementById("state").value = postOffice.State || "";
+            } else {
+                alert("No details found for this Pincode.");
+                document.getElementById("city").value = "";
+                document.getElementById("state").value = "";
+            }
+        } catch (error) {
+            console.error("Error fetching location details:", error);
+            alert("Something went wrong while fetching location details.");
+        }
+    } else if (pincode.length > 6) {
+        alert("Pincode should be exactly 6 digits.");
+    }
+}
+
+
+
+
+    document.getElementById('placeOrderBtn').addEventListener('click', function (event) {
+    event.preventDefault();
+    // COD: Submit directly to /place-order without Razorpay
+    const submitButton = document.getElementById('placeOrderBtn'); // assuming your button has this id
+    const loader = document.getElementById('loader'); // assuming your loader element has this id
+
+    // Disable the button and show the loader while the request is processing
+    submitButton.style.display= "none";
+    loader.style.display = "block";
+    // Validate address form fields
+    const firstname = document.getElementById('firstname').value.trim();
+    const lastname = document.getElementById('lastname').value.trim();
+    const mobile = document.getElementById('mobile').value.trim();
+    const address = document.getElementById('address').value.trim();
+    const city = document.getElementById('city').value.trim();
+    const state = document.getElementById('state').value.trim();
+    const pincode = document.getElementById('pincode').value.trim();
+    
+    if (!firstname || !lastname || !mobile || !address || !city || !state || !pincode) {
+        alert('Please confirm the address before placing the order.');
+        return;
+    }
+
+    // Check selected payment method
+    const paymentMethod = document.querySelector('input[name="payment_method"]:checked');
+    if (!paymentMethod) {
+        alert('Please select a payment method.');
+        return;
+    }
+
+    const paymentType = paymentMethod.value;  // "COD" or "Online"
+    const formData = new FormData(document.getElementById('addressForm'));
+
+    // Collect cart data
+    const cartItems = [];
+    const tableRows = document.querySelectorAll('#cartTable tbody tr');
+    tableRows.forEach(row => {
+        cartItems.push({
+            productname: row.cells[0].textContent.trim(),
+            size: row.cells[2].textContent.trim(),
+            color: row.cells[3].textContent.trim(),
+            quantity: row.cells[4].textContent.trim(),
+            totalprice: row.cells[5].textContent.replace('₹', '').trim()
+        });
+    });
+    formData.append('cart_items', JSON.stringify(cartItems));
+    formData.append('payment_method', paymentType);
+
+    if (paymentType === 'COD') {
+
+
+    fetch('/place-order', { method: 'POST', body: formData })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Order placed successfully!');
+                window.location.href = '/';
+            } else {
+                alert('Error placing order: ' + data.message);
+            }
+        })
+        .finally(() => {
+            // Re-enable the button and hide the loader
+            submitButton.disabled = false;
+            loader.style.display = "none";
+        });
+}
+ else {
+        // Online: Proceed with Razorpay payment
+        fetch('/create-order', { method: 'POST', headers: { 'Content-Type': 'application/json' } })
+            .then(response => response.json())
+            .then(data => {
+                const options = {
+                    "key": data.key_id,
+                    "amount": data.amount,
+                    "currency": data.currency,
+                    "name": "Your Store Name",
+                    "order_id": data.razorpay_order_id,
+                    "handler": function (response) {
+                        formData.append('razorpay_payment_id', response.razorpay_payment_id);
+                        formData.append('razorpay_order_id', response.razorpay_order_id);
+
+                        fetch('/place-order', { method: 'POST', body: formData })
+                            .then(saveResponse => saveResponse.json())
+                            .then(saveData => {
+                                if (saveData.success) {
+                                    alert('Order placed successfully!');
+                                    window.location.href = '/';
+                                } else {
+                                    alert('Error saving order: ' + saveData.message);
+                                }
+                            });
+                    },
+                    "prefill": {
+                        "name": `${firstname} ${lastname}`,
+                        "contact": mobile
+                    },
+                    "theme": { "color": "#3399cc" }
+                };
+                const rzp1 = new Razorpay(options);
+                rzp1.open();
+            })
+            .catch(error => console.error('Error:', error));
+    }
+});
+
+</script>
+
+    
+</body>
+
+<!-- belle/checkout.html   11 Nov 2019 12:44:33 GMT -->
+</html>

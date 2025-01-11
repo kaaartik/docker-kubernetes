@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: flask-ecommerce-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: flask-ecommerce
+  ports:
+    - port: 5000       # Target port inside the container
+      targetPort: 5000 # Port in the container
+      
